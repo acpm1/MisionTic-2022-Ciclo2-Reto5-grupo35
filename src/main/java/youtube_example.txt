@@ -1,0 +1,87 @@
+//https://www.youtube.com/watch?v=zL4dxsWF8cs
+
+import vista.VistaRequerimientos;
+import java.sql.*;
+
+/**
+ * Esta clase solo se debe usar para hacer pruebas locales, no se debe subir en
+ * iMaster
+ */
+public class App {
+    public static void main(String[] args) {
+//        System.out.println("Requerimiento 1");
+//        VistaRequerimientos.requerimiento1();
+//        System.out.println();
+//
+//        System.out.println("Requerimiento 2");
+//        VistaRequerimientos.requerimiento2();
+//        System.out.println();
+//
+//        System.out.println("Requerimiento 3");
+//        VistaRequerimientos.requerimiento3();
+        try 
+        {
+          Class.forName("org.sqlite.JDBC");  
+        } 
+          catch (ClassNotFoundException e)             
+        {
+           System.out.println("Exception 1: "+ e);    
+        }
+        
+        Connection c = null;
+        
+        try {
+            
+            c = DriverManager.getConnection("jdbc:sqlite:ProyectosConstruccion.db");
+            
+        } catch (Exception e) {
+        }
+        
+        String sql = "SELECT * FROM Tipo";
+        PreparedStatement p = null;       
+        ResultSet r = null;
+        
+        try 
+        {
+            p = c.prepareStatement(sql);
+            p.clearParameters();
+            
+            r = p.executeQuery();
+            int id ;
+            int area;
+            
+            while (r.next())
+            {
+                id = r.getInt(1);
+                area = r.getInt("Area_Max");
+                System.err.println("id: "+ id +", area: "+ area);
+            }
+        } catch (Exception e) 
+        {
+        }
+        
+    }
+}
+
+
+
+
+
+        String html = " <html>\n" +
+                "<head>\n" +
+                "</head>\n" +
+                "<body>\n" +
+                "<p align=\"justify\">Welcome To My Domain.</p>\n" +
+                "<p><b>Welcome</b>Users</p>\n" +
+                "</body>\n" +
+                "</html>";//    e.printStackTrace();
+        jEditorPane1.setContentType("text/html");
+        jEditorPane1.setText(html);
+
+
+    } catch (IOException e) 
+    {
+    jEditorPane1.setContentType("text/html");
+    jEditorPane1.setText("<html>Could not load</html>");
+//    e.printStackTrace();
+    }
